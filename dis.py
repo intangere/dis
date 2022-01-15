@@ -81,7 +81,10 @@ if __name__ == '__main__':
              macro = True
           else:
              expand_amount = int(''.join(filter(str.isdigit, sub_program)))
-             expanded_program = program.split('/'+sub_program+'/', 1)
+             if not expanded_program:
+                expanded_program = program.split('/'+sub_program+'/', 1)
+             else:
+                expanded_program = expanded_program.split('/'+sub_program+'/', 1)
              for _ in range(expand_amount):
                  while i < expand_amount:
                     mem[i] = ord(sub_program[-1])
@@ -89,6 +92,7 @@ if __name__ == '__main__':
                     expanded_program[0]+=sub_program[-1]
              expanded_program=''.join(expanded_program)
              macro = False
+             sub_program = ''
        elif macro:
          sub_program += x
 
